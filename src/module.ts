@@ -13,12 +13,6 @@ export interface ModuleOptions {
    * @default true
    */
   enabled?: boolean
-  /**
-   * Enable debug logging
-   * @type {boolean}
-   * @default false
-   */
-  debug?: boolean
 }
 
 // Runtime config type
@@ -27,7 +21,6 @@ declare module '@nuxt/schema' {
     nuxtError: {
       apiToken: string
       enabled: boolean
-      debug: boolean
     }
   }
 }
@@ -42,7 +35,6 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     enabled: true,
-    debug: false,
   },
   setup(options, nuxt) {
     // Module validation
@@ -75,16 +67,11 @@ export default defineNuxtModule<ModuleOptions>({
         { enabled: options.enabled },
         {
           apiToken: options.apiToken,
-          debug: options.debug,
         },
       )
 
       // Add server plugin
       addServerPlugin(resolver.resolve('./runtime/nitro-plugin'))
-
-      if (options.debug) {
-        logger.info('Nuxt Error Module initialized successfully')
-      }
     }
     catch (error) {
       logger.error('Failed to initialize Nuxt Error Module:', error)

@@ -1,6 +1,6 @@
 {
   "name": "nuxt-error",
-  "version": "1.0.6",
+  "version": "0.0.1",
   "description": "The error module for Nuxt",
   "repository": "https://github.com/dennisadriaans/nuxt-error-module",
   "license": "MIT",
